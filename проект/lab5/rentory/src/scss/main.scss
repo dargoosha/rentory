@@ -1,0 +1,94 @@
+@import url(./recet.scss);
+
+$font-size: 1rem;
+$font-color: #0A0C14;
+$body-color: #FFEEF1;
+$primary-color: #A67A8D;
+$secondary-color: #ffffff;
+$padding: 20px;
+$border-radius: 10px;
+
+
+html {
+    font-size: $font-size;
+    color: $font-color;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: $body-color;
+    padding: 2em 3.5em;
+    gap: 2em;
+}
+
+.header {
+    display: flex;
+    background-color: #A67A8D;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+    height: 10vh;
+    align-items: center;
+    padding: 0em 3em;
+}
+.content {
+    display: flex;
+    width: 100%;
+    height: 90vh;
+    gap: 2em;
+}
+
+.left-column {
+    
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main{
+    display: flex;
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    padding: 0em 2em 2em;
+    
+}
+
+//article {
+  //  background-color: $secondary-color;
+    //padding: $padding;
+    //border-radius: $border-radius;
+    //margin-bottom: 20px;
+    
+//}
+
+.filters-footer-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.filters{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 85%;
+    background-color: white;
+    padding: 0em 0.7em 2em;
+}
+
+.footer {
+    width: 100%;
+    background-color: $primary-color;
+    color: white;
+    text-align: center;
+    padding: $padding;
+    border-radius: $border-radius;
+    height: 10%;
+}
