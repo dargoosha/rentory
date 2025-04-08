@@ -1,5 +1,111 @@
 article.filters-footer-wrapper
     section.filters
-        h2 Filters 
+        ul.filter-list
+            li.filter-category
+                h3 ТИП СКЛАДУ
+                ul.filter-options
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="type" value="ordinary")
+                            p Звичайний
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="type" value="refrigerated")
+                            p Холодильний
+            li.filter-category
+                h3 РОЗМІР
+                ul.filter-options
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="size" value="small")
+                            p Маленькі бокси (1–10 м²)
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="size" value="medium")
+                            p Середні приміщення (10–100 м²)
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="size" value="large")
+                            p Великі склади (100–1000 м²)
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="size" value="extra-large")
+                            p Особливі комплекси (1000+ м²)
+            li.filter-category
+                h3 ТЕМПЕРАТУРА
+                ul.filter-options
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="temperature" value="standard")
+                            p Стандартна (від 5 до 25°C)
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="temperature" value="cool")
+                            p Охолоджувальна (від 0 до 5°C)
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="temperature" value="frozen")
+                            p Морозна (від -18°C і нижче)
+            li.filter-category
+                h3 ВОЛОГІСТЬ
+                ul.filter-options
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="humidity" value="standard")
+                            p Стандартна (40–60%)
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="humidity" value="low")
+                            p Знижена (менше 40%)
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="humidity" value="high")
+                            p Підвищена (вище 60%)
+            li.filter-category
+                h3 ВЕНТИЛЯЦІЯ
+                ul.filter-options
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="ventilation" value="ventilated")
+                            p Вентиляція
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="ventilation" value="non-ventilated")
+                            p Без вентиляції
+            li.filter-category
+                h3 МІСТО
+                ul.filter-options
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="city" value="kyiv")
+                            p Київ
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="city" value="kharkiv")
+                            p Харків
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="city" value="zaporizhzhia")
+                            p Запоріжжя
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="city" value="dnipro")
+                            p Дніпро
+                    li.filter-option
+                        label
+                            input(type="checkbox" name="city" value="cherkasy")
+                            p Черкаси
+            li.filter-category
+                h3 ДАТА
+                ul.filter-options
+                h4 Від
+                    li.filter-option
+                    
+                        input(type="date" name="date-from" )
+                h4 До
+                    li.filter-option
+                    
+                        input(type="date" name="date-to" )
     footer.footer
-        h2 footer
+        p Powered by dargoosha 
+        p Всі права захищені © 2025 Rentory

@@ -7,4 +7,13 @@ const locals = { name: "My Pug" };
 
 export default defineConfig({
     plugins: [pugPlugin(undefined, { pagesUrl: "./pages/" })], 
+    build: {
+        minify: false, 
+        rollupOptions: {
+            output: {
+                assetFileNames: "assets/[name].[ext]",
+            },
+        },
+    },
+
 });

@@ -1,7 +1,9 @@
 @import url(./recet.scss);
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 
 $font-size: 1rem;
 $font-color: #0A0C14;
+$font-family: 'Amatic SC';
 $body-color: #FFEEF1;
 $primary-color: #A67A8D;
 $secondary-color: #ffffff;
@@ -12,9 +14,11 @@ $border-radius: 10px;
 html {
     font-size: $font-size;
     color: $font-color;
+   
 }
 
 .body {
+    font-family: $font-family;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -32,23 +36,21 @@ html {
     height: 10vh;
     align-items: center;
     padding: 0em 3em;
+    h1{
+        font-size: 4.3em;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+    }
 }
 .content {
     display: flex;
     width: 100%;
-    height: 90vh;
     gap: 2em;
-}
-
-.left-column {
-    
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
 }
 
 .main{
     display: flex;
+    flex-direction: column;
     background-color: #ffffff;
     width: 100%;
     height: 100%;
@@ -57,13 +59,67 @@ html {
     
 }
 
-//article {
-  //  background-color: $secondary-color;
-    //padding: $padding;
-    //border-radius: $border-radius;
-    //margin-bottom: 20px;
-    
-//}
+.warehouses {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); // Сітка для кількох карток
+    gap: 1.5em; // Відстань між картками
+    width: 100%;
+}
+
+.warehouse-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5; // Світло-сірий фон, як на макеті
+    border-radius: 10px;
+    overflow: hidden; // Щоб зображення не виходило за межі
+    transition: transform 0.3s ease;
+    &:hover {
+        transform: scale(1.03); // Легке збільшення при наведенні
+    }
+}
+
+.warehouse-image {
+    width: 100%;
+    height: 150px; // Фіксована висота для зображення
+    background-color: #e0e0e0; // Колір плейсхолдера, якщо зображення немає
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // Зображення заповнює контейнер без спотворення
+    }
+}
+
+.warehouse-info {
+    padding: 1em;
+    text-align: center;
+    h3 {
+        font-size: 1.2em;
+        margin: 0;
+        color: #333;
+    }
+    p {
+        font-size: 0.9em;
+        color: #777;
+        margin: 0.3em 0 0;
+    }
+}
+
+.book-button {
+    background-color: #a77bff; // Фіолетовий колір кнопки
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 0.7em 1.5em;
+    margin: 0.5em auto 1em; // Центруємо кнопку
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: #ffffff;
+        color: black;
+        border: 1px solid $primary-color;
+    }
+}
 
 .filters-footer-wrapper{
     display: flex;
@@ -71,6 +127,7 @@ html {
     align-items: center;
     width: 30%;
     height: 100%;
+    gap: 2em;
     justify-content: space-between;
 }
 
@@ -81,14 +138,70 @@ html {
     height: 85%;
     background-color: white;
     padding: 0em 0.7em 2em;
+    border-radius: 20px;
+}
+.filter-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.filter-category h3 {
+    font-size: 1em;
+    color: #333;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+.filter-options {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.filter-option {
+    background-color: white;
+    border: 2px solid $primary-color; 
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0em 2em;
+
+    input[type="checkbox"] {
+        display: none; 
+        }
+    p{
+        border-radius: 20px;
+    }
+    input[type="checkbox"]:checked + p {
+        background-color:$primary-color;
+        color: white; 
+        }
+
+}
+
+
+.filter-option input[type="date"] {
+    border-radius: 20px;
+    padding: 0.2em;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .footer {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    background-color: $primary-color;
-    color: white;
+    background-color: $secondary-color;
+    color: rgb(143, 143, 143);
     text-align: center;
+    justify-content: center;
     padding: $padding;
     border-radius: $border-radius;
     height: 10%;
+    p{
+        font-size: 0.7em;
+    }
 }
