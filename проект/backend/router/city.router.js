@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const cityController = require('../controller/city.controller.js');
+const cityController = require('../controller/city.controller');
 
 router.get('/', cityController.findAll);
 router.post('/', cityController.create);

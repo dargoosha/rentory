@@ -43,3 +43,100 @@ section.main
                 h3 Звичайний склад
                 p Маленький
             button.book-button Забронювати!  
+.modal#bookingModal
+    .success-Notification#successNotification
+        p Вітаємо! Ви успішно забронювали склад.
+    .modal-content
+        span.close-button ×
+        h2 Інформація про склад
+        .warehouse-header
+            .modal-image
+                img(src="warehouse.png" alt="Зображення складу")
+            .warehouse-details
+                h3 Звичайний склад
+                p.price 500 грн за проміжок часу
+        .modal-grid
+            .modal-section
+                h3 Опис
+                p Тип складу: Звичайний склад
+                p Розмір: Середній розмір
+                p Температура: Стандартна
+                p Вологість: Стандартна
+                p Місце: Київ
+                p Дата: Від 04.03.2025 до 06.03.2025
+            .modal-section
+                h3 Дані про замовника
+                p Ім'я та прізвище:
+                input(type='text' placeholder="Введіть ім'я та прізвище")
+                p Електронна пошта:
+                input(type='email' placeholder='Введіть електронну пошту')
+                p Номер телефону:
+                input(type='tel' placeholder='Введіть номер телефону')
+        button.submit-button Забронювати  
+script.
+    document.addEventListener('DOMContentLoaded', function() {
+        const bookButtons = document.querySelectorAll('.book-button');
+        const submitButton = document.querySelector('.submit-button');
+        const modal = document.getElementById('bookingModal');
+        const closeButton = document.querySelector('.close-button');
+
+        if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+        Notification.requestPermission().then(permission => {
+            if (permission === "granted") {
+                console.log("Дозвіл на сповіщення отримано");
+            }
+        });
+    }
+
+        bookButtons.forEach(button => {
+            button.addEventListener('click', openModal);
+        });
+
+        if (submitButton) {
+            submitButton.addEventListener('click', function() {
+                closeModal();
+                showSuccessNotification();
+            });
+        }
+
+        if (closeButton) {
+            closeButton.addEventListener('click', closeModal);
+        }
+
+        function openModal() {
+            if (modal) {
+                modal.style.display = 'flex';
+            }
+        }
+
+        function closeModal() {
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function showSuccessNotification() {
+            if (Notification.permission === "granted") {
+                new Notification("Бронювання складу", {
+                    body: "Вітаємо! Ви успішно забронювали склад.",
+                    icon: "warehouse.png" // Опціонально: додайте іконку (шлях до зображення)
+                });
+            } else if (Notification.permission !== "denied") {
+            // Якщо дозвіл ще не отримано, запитуємо його знову
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        new Notification("Бронювання складу", {
+                            body: "Вітаємо! Ви успішно забронювали склад.",
+                            icon: "warehouse.png"
+                        });
+                    }
+                });
+            }
+        }
+
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+    });

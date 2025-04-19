@@ -1,10 +1,10 @@
 const City = require("../model/city.model.js");
 
 exports.findAll = function (req, res) {
-    Booking.findAll(function(err, booking) {
+    City.findAll(function(err, city) {
         if (err) {
             res.status(500).send(err);
-        } else res.send(booking);
+        } else res.send(city);
     });
 }
 
