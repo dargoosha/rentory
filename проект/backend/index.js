@@ -1,8 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const PORT = 5000;
 const app = express();
+
+app.use(cors({
+    origin: 'http://localhost:5173', // Вкажи джерело твого фронтенду
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Дозволені методи
+    allowedHeaders: ['Content-Type'], // Дозволені заголовки
+}));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

@@ -10,7 +10,6 @@ var Warehouse = function (warehouse) {
     this.Address = warehouse.Address;
     this.IdSize = warehouse.IdSize;
     this.PrisePerDay = warehouse.PrisePerDay;
-
 }
 
 Warehouse.create = function (newWarehouse, result) {
@@ -26,8 +25,20 @@ Warehouse.create = function (newWarehouse, result) {
 }
 
 Warehouse.findById = function (IdWarehouse, result) {
-    connection.query("SELECT * FROM Warehouse WHERE IdWarehouse = ?", IdWarehouse, 
-    function (err, res) {
+    connection.query(`
+        SELECT 
+            w.*, 
+            wt.TypeName, 
+            s.WarehouseSize AS SizeName, 
+            c.CityName, 
+            t.Temperature AS TemperatureName 
+        FROM Warehouse w
+        LEFT JOIN WarehouseType wt ON w.IdWarehouseType = wt.IdWarehouseType
+        LEFT JOIN Size s ON w.IdSize = s.IdSize
+        LEFT JOIN City c ON w.IdCity = c.IdCity
+        LEFT JOIN Temperature t ON w.IdTemperature = t.IdTemperature
+        WHERE w.IdWarehouse = ?
+    `, IdWarehouse, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -35,19 +46,30 @@ Warehouse.findById = function (IdWarehouse, result) {
             result(null, res);
         }
     });
-}   
+}
 
 Warehouse.findAll = function (result) {
-    connection.query("SELECT * FROM Warehouse", 
-        function (err, res) {
-            if (err) {
-                console.log("error: ", err);
-                result(null, err);
-            } else {
-                console.log("Warehouse: ", res);
-                result(null, res);
-            }
-        });
+    connection.query(`
+        SELECT 
+            w.*, 
+            wt.TypeName, 
+            s.WarehouseSize AS SizeName, 
+            c.CityName, 
+            t.Temperature AS TemperatureName 
+        FROM Warehouse w
+        LEFT JOIN WarehouseType wt ON w.IdWarehouseType = wt.IdWarehouseType
+        LEFT JOIN Size s ON w.IdSize = s.IdSize
+        LEFT JOIN City c ON w.IdCity = c.IdCity
+        LEFT JOIN Temperature t ON w.IdTemperature = t.IdTemperature
+    `, function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            console.log("Warehouses: ", res);
+            result(null, res);
+        }
+    });
 }
 
 Warehouse.update = function (IdWarehouse, warehouse, result) {
