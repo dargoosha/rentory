@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/main.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Warehouse Management</h1>
+
+        <h3>Add New Warehouse</h3>
+        <form action="/api/warehouse/create" method="POST" >
+            <div class="mb-3">
+                <label for="IdWarehouse" class="form-label">Warehouse ID</label>
+                <input type="text" class="form-control" id="IdWarehouse" name="IdWarehouse" required>
+            </div>
+            <div class="mb-3">
+                <label for="IdWarehouseType" class="form-label">Warehouse type ID</label>
+                <input type="text" class="form-control" id="IdWarehouseType" name="IdWarehouseType" required>
+            </div>
+            <div class="mb-3">
+                <label for="IdTemperature" class="form-label">Temperature ID</label>
+                <input type="text" class="form-control" id="IdTemperature" name="IdTemperature" required>
+            </div>
+            <div class="mb-3">
+                <label for="Humidity" class="form-label">Humidity</label>
+                <input type="text" class="form-control" id="Humidity" name="Humidity" required>
+            </div>
+            <div class="mb-3">
+                <label for="Ventilation" class="form-label">Ventilation</label>
+                <input type="number" class="form-control" id="Ventilation" name="Ventilation" required>
+            </div>
+            <div class="mb-3">
+                <label for="IdCity" class="form-label"> City Id</label>
+                <input type="number" class="form-control" id="IdCity" name="IdCity"required>
+            </div>
+            <div class="mb-3">
+                <label for="Address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="Address" name="Address"required>
+            </div>
+            <div class="mb-3">
+                <label for="IdSize" class="form-label">Size id</label>
+                <input type="number" class="form-control" id="IdSize" name="IdSize"required>
+            </div>
+            <div class="mb-3">
+                <label for="PrisePerDay" class="form-label"> Prise per day</label>
+                <input type="number" class="form-control" id="PrisePerDay" name="PrisePerDay" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Warehouse</button>
+        </form>
+
+
+        <h3>Warehouse List</h3>
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Warehouse ID</th>
+                    <th>Warehouse type ID</th>
+                    <th>Temperature ID</th>
+                    <th>Humidity</th>
+                    <th>Ventilation</th>
+                    <th>City ID</th>
+                    <th>Address</th>
+                    <th>Size ID</th>
+                    <th>Price per day</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% warehouses.forEach(function(warehouse) { %>
+                    <tr>
+                        <td><%= warehouse.IdWarehouse %></td>
+                        <td><%= warehouse.IdWarehouseType %></td>
+                        <td><%= warehouse.IdTemperature %></td>
+                        <td><%= warehouse.Humidity %></td>
+                        <td><%= warehouse.Ventilation %></td>
+                        <td><%= warehouse.IdCity %></td>
+                        <td><%= warehouse.Address %></td>
+                        <td><%= warehouse.IdSize %></td>
+                        <td><%= warehouse.PrisePerDay %></td>
+                        <td>
+                            <a href="/api/warehouse/<%= warehouse.IdWarehouse %>" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="/api/warehouse/delete/<%= warehouse.IdWarehouse %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this warehouse?')">Delete</a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+    </div>
+</body>
+</html>

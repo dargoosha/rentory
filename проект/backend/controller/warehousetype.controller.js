@@ -4,7 +4,7 @@ exports.findAll = function (req, res) {
     WarehouseType.findAll(function (err, warehousetype) {
         if (err) {
             res.status(500).send(err);
-        } else res.send(warehousetype);
+        } else res.render('warehousetype.ejs', { warehousetypes: warehousetype });
     });
 }
 
@@ -19,7 +19,7 @@ exports.create = function (req, res) {
             if (err) {
                 res.send(err);
             }
-            res.json({ error: false, message: "Warehousetype added successfully!", data: warehousetype });
+            res.redirect('/warehousetype');
         });
     }
 }
@@ -29,7 +29,7 @@ exports.findById = function (req, res) {
         if (err) {
             res.send(err);
         } else {
-            res.json(warehousetype);
+            res.render('warehousetype_edit.ejs', { warehousetype: warehousetype });
         }
     });
 }
@@ -44,7 +44,7 @@ exports.update = function (req, res) {
             if (err) {
                 res.send(err);
             } else {
-                res.json({ error: false, message: "Warehousetype updated successfully!" });
+                res.redirect('/warehousetype');
             }
         });
     }
@@ -56,7 +56,7 @@ exports.delete = function (req, res) {
             res.send(err);
         }
         else {
-            res.json({ error: false, message: "Warehousetype deleted successfully!" });
+            res.redirect('/warehousetype');
         }
     });
 }

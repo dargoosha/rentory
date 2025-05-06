@@ -4,7 +4,7 @@ exports.findAll = function (req, res) {
     User.findAll(function(err, user) {
         if (err) {
             res.status(500).send(err);
-        } else res.send(user);
+        } else res.render('user.ejs', { users: user });
     });
 }
 
@@ -19,7 +19,7 @@ exports.create = function(req, res) {
             if (err) {
                 res.send(err);
             }
-            res.json({ error: false, message: "User added successfully!" , data: user });
+            res.redirect('/api/user');
         });
     }
 }
@@ -29,7 +29,7 @@ exports.findById = function(req, res) {
         if (err) {
             res.send(err);
         } else {
-            res.json(user);
+            res.render('user_edit.ejs', { user: user });
         }
     });
 }
@@ -44,7 +44,7 @@ exports.update = function(req, res) {
             if (err) {
                 res.send(err);
             } else {
-                res.json({ error: false, message: "User updated successfully!" });
+                res.redirect('/api/user');
             }
         });
     }
@@ -56,7 +56,7 @@ exports.delete = function(req, res) {
             res.send(err);
         }
         else {
-            res.json({ error: false, message: "User deleted successfully!" });
+            res.redirect('/api/user');
         }
     });
 }

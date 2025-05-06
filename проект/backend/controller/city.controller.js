@@ -4,7 +4,7 @@ exports.findAll = function (req, res) {
     City.findAll(function(err, city) {
         if (err) {
             res.status(500).send(err);
-        } else res.send(city);
+        } else res.render('city.ejs', { city: city });
     });
 }
 
@@ -19,7 +19,7 @@ exports.create = function (req, res) {
             if (err) {
                 res.send(err);
             }
-            res.json({ error: false, message: "City added successfully!", data: city });
+            res.redirect('/city');
         });
     }
 }
@@ -29,7 +29,7 @@ exports.findById = function(req, res) {
         if (err) {
             res.send(err);
         } else {
-            res.json(city);
+            res.render('city_edit.ejs', { city: city });
         }
     });
 }
@@ -44,7 +44,7 @@ exports.update = function(req, res) {
             if (err) {
                 res.send(err);
             } else {
-                res.json({ error: false, message: "City updated successfully!" });
+                res.redirect('/city');
             }
         });
     }
@@ -56,7 +56,7 @@ exports.delete = function(req, res) {
             res.send(err);
         }
         else {
-            res.json({ error: false, message: "City deleted successfully!" });
+            res.redirect('/city');
         }
     });
 }

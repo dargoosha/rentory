@@ -4,7 +4,7 @@ exports.findAll = function (req, res) {
     Booking.findAll(function (err, booking) {
         if (err){
             res.status(500).send(err);
-        } else res.send(booking);
+        } else res.render('booking.ejs', { booking: booking });
     });
 }
 
@@ -19,7 +19,7 @@ exports.create = function (req, res) {
             if (err) {
                 res.send(err);
             }
-            res.json({ error: false, message: "Booking added successfully!", data: booking });
+            res.redirect('/api/booking');
         });
     }
 }
@@ -27,9 +27,11 @@ exports.create = function (req, res) {
 exports.findById = function (req, res) {
     Booking.findById(req.params.IdBooking, function (err, booking) {
         if (err) {
-            res.send(err);
+            res.status(500).send(err);
+        } else if (!booking || booking.length === 0) {
+            res.status(404).send({ error: true, message: "Booking not found" });
         } else {
-            res.json(booking);
+            res.render('booking_edit.ejs', { booking: booking[0] }); // Беремо перший елемент, якщо повертається масив
         }
     });
 }
@@ -41,22 +43,21 @@ exports.update = function (req, res) {
     }
     else {
         Booking.update(req.params.IdBooking, new Booking(req.body), function (err, booking) {
-            if (err) {
+            if (err) 
                 res.send(err);
-            } else {
-                res.json({ error: false, message: "Booking updated successfully!" });
-            }
+            res.redirect('/api/booking');
+
         });
     }
 }
 
 exports.delete = function(req, res) {
-    User.delete(req.params.IdBooking, function(err,booking) {
+    Booking.delete(req.params.IdBooking, function(err,booking) {
         if (err) {
             res.send(err);
         }
         else {
-            res.json({ error: false, message: "Booking deleted successfully!" });
+            res.redirect('/api/booking');
         }
     });
 }

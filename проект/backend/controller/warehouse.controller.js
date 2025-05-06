@@ -4,7 +4,7 @@ exports.findAll = function (req, res) {
     Warehouse.findAll(function (err, warehouse) {
         if (err) {
             res.status(500).send(err);
-        } else res.send(warehouse);
+        } else res.render('warehouse.ejs', { warehouses: warehouse });
     });
 }
 
@@ -19,7 +19,7 @@ exports.create = function (req, res) {
             if (err) {
                 res.send(err);
             }
-            res.json({ error: false, message: "Warehouse added successfully!", data: warehouse });
+            res.redirect('/api/warehouse');
         });
     }
 }
@@ -29,7 +29,7 @@ exports.findById = function (req, res) {
         if (err) {
             res.send(err);
         } else {
-            res.json(warehouse);
+            res.render('warehouse_edit.ejs', { warehouse: warehouse });
         }
     });
 }
@@ -44,7 +44,7 @@ exports.update = function (req, res) {
             if (err) {
                 res.send(err);
             } else {
-                res.json({ error: false, message: "Warehouse updated successfully!" });
+                res.redirect('/api/warehouse');
             }
         });
     }
@@ -56,7 +56,7 @@ exports.delete = function (req, res) {
             res.send(err);
         }
         else {
-            res.json({ error: false, message: "Warehouse deleted successfully!" });
+            res.redirect('/api/warehouse');
         }
     });
 }

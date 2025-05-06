@@ -4,7 +4,7 @@ exports.findAll = function (req, res) {
     Temperature.findAll(function (err, temperature) {
         if (err) {
             res.status(500).send(err);
-        } else res.send(temperature);
+        } else res.render('temperature.ejs', { temperatures: temperature });
     });
 }
 
@@ -19,7 +19,7 @@ exports.create = function (req, res) {
             if (err) {
                 res.send(err);
             }
-            res.json({ error: false, message: "Temperature added successfully!", data: temperature });
+            res.redirect('/temperature');
         });
     }
 }
@@ -29,7 +29,7 @@ exports.findById = function (req, res) {
         if (err) {
             res.send(err);
         } else {
-            res.json(temperature);
+            res.render('temperature_edit.ejs', { temperature: temperature });
         }
     });
 }
@@ -44,7 +44,7 @@ exports.update = function (req, res) {
             if (err) {
                 res.send(err);
             } else {
-                res.json({ error: false, message: "Temperature updated successfully!" });
+                res.redirect('/temperature');
             }
         });
     }
@@ -56,7 +56,7 @@ exports.delete = function (req, res) {
             res.send(err);
         }
         else {
-            res.json({ error: false, message: "Temperature deleted successfully!" });
+            res.redirect('/temperature');
         }
     });
 }

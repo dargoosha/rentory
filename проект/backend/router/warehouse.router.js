@@ -3,9 +3,9 @@ const router = express.Router();
 const warehouseController = require('../controller/warehouse.controller.js');
 
 router.get('/', warehouseController.findAll);
-router.post('/', warehouseController.create);
+router.post('/create',  warehouseController.create);
 router.get('/:IdWarehouse', warehouseController.findById);
-router.put('/:IdWarehouse', warehouseController.update);
-router.delete('/:IdWarehouse', warehouseController.delete);
+router.post('/put/:IdWarehouse', warehouseController.update);
+router.get('/delete/:IdWarehouse', warehouseController.delete);
 
 module.exports = router;

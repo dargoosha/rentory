@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/main.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Edit Booking</h1>
+
+        <form action="/api/booking/put/<%= booking.IdBooking %>" method="POST" >
+            <div class="mb-3">
+                <label for="IdBooking" class="form-label">Booking ID</label>
+                <input type="text" class="form-control" id="IdBooking" name="IdBooking" value="<%= booking.IdBooking %>" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="IdClient" class="form-label">Client ID</label>
+                <input type="text" class="form-control" id="IdClient" name="IdClient" value="<%= booking.IdClient %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="IdWarehouse" class="form-label">Warehouse ID</label>
+                <input type="text" class="form-control" id="IdWarehouse" name="IdWarehouse" value="<%= booking.IdWarehouse %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="StartDate" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="StartDate" name="StartDate" value="<%= booking.StartDate %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="EndDate" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="EndDate" name="EndDate" value="<%= booking.EndDate %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="Prise" class="form-label">Price</label>
+                <input type="number" class="form-control" id="Prise" name="Prise" value="<%= booking.Prise %>" step="5" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update Booking</button>
+        </form>
+
+        <a class="btn btn-outline-secondary mt-3" href="/api/booking" style="margin-left: 50px;">Back to Bookings</a>
+    </div>
+</body>
+</html>

@@ -3,9 +3,9 @@ const router = express.Router();
 const temperatureController = require('../controller/temperature.controller.js');
 
 router.get('/', temperatureController.findAll);
-router.post('/', temperatureController.create);
+router.post('/create', temperatureController.create);
 router.get('/:IdTemperature', temperatureController.findById);
-router.put('/:IdTemperature', temperatureController.update);
-router.delete('/:IdTemperature', temperatureController.delete);
+router.post('/put/:IdTemperature', temperatureController.update);
+router.get('/delete/:IdTemperature', temperatureController.delete);
 
 module.exports = router;

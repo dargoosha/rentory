@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/main.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">User management</h1>
+
+        <h3>Add new User</h3>
+        <form action="/api/user/create" method="POST" class="mb-5" >
+            <div class="mb-3">
+                <label for="IdClient" class="form-label">User ID</label>
+                <input type="text" class="form-control" id="IdClient" name="IdClient" required>
+            </div>
+            <div class="mb-3">
+                <label for="FullName" class="form-label">Full name</label>
+                <input type="text" class="form-control" id="FullName" name="FullName" required>
+            </div>
+            <div class="mb-3">
+                <label for="Email" class="form-label">Email</label>
+                <input type="text" class="form-control" id="Email" name="Email" required>
+            </div>
+            <div class="mb-3">
+                <label for="Phone" class="form-label">Phone</label>
+                <input type="number" class="form-control" id="Phone" name="Phone" required>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Add User</button>
+        </form>
+    
+        <h3>User List</h3>
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>User ID</th>
+                    <th>Full name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(function(user) { %>
+                    <tr>
+                        <td><%= user.IdClient %></td>
+                        <td><%= user.FullName %></td>
+                        <td><%= user.Email %></td>
+                        <td><%= user.Phone %></td>
+                        <td>
+                            <a href="/api/user/<%= user.IdClient %>" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="/api/user/delete/<%= user.IdClient %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+
+        <a class="btn btn-outline-secondary" href="/" style="margin-left: 50px;">Back to Home</a>
+    </div>
+</body>
+</html>

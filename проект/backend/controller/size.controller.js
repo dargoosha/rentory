@@ -4,7 +4,7 @@ exports.findAll = function (req, res) {
     Size.findAll(function (err, size) {
         if (err) {
             res.status(500).send(err);
-        } else res.send(size);
+        } else res.render('size.ejs', { sizes: size });
     });
 }
 
@@ -19,7 +19,7 @@ exports.create = function (req, res) {
             if (err) {
                 res.send(err);
             }
-            res.json({ error: false, message: "Size added successfully!", data: size });
+            res.redirect('/size');
         });
     }
 }
@@ -29,7 +29,7 @@ exports.findById = function (req, res) {
         if (err) {
             res.send(err);
         } else {
-            res.json(size);
+            res.render('size_edit.ejs', { size: size });
         }
     });
 }
@@ -44,7 +44,7 @@ exports.update = function (req, res) {
             if (err) {
                 res.send(err);
             } else {
-                res.json({ error: false, message: "Size updated successfully!" });
+                res.redirect('/size');
             }
         });
     }
@@ -56,7 +56,7 @@ exports.delete = function (req, res) {
             res.send(err);
         }
         else {
-            res.json({ error: false, message: "Size deleted successfully!" });
+            res.redirect('/size');
         }
     });
 }

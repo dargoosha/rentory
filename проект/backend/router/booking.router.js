@@ -3,9 +3,9 @@ const router = express.Router();
 const bookingController = require('../controller/booking.controller.js');
 
 router.get('/', bookingController.findAll);
-router.post('/', bookingController.create);
+router.post('/create', bookingController.create);
 router.get('/:IdBooking', bookingController.findById);
-router.put('/:IdBooking', bookingController.update);
-router.delete('/:IdBooking', bookingController.delete);
+router.post('/put/:IdBooking', bookingController.update);
+router.get('/delete/:IdBooking', bookingController.delete);
 
 module.exports = router;
