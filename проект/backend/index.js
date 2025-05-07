@@ -17,8 +17,9 @@ app.use(bodyParser.json());
 app.use(express.static("."));
 
 app.get('/', (req, res) => {
-    res.status(200).json("Сервер працює!");
+     res.render('index.ejs');
 });
+
 
 const userRouter = require('./router/user.router.js');
 app.use('/api/user', userRouter);

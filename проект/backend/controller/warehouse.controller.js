@@ -28,8 +28,10 @@ exports.findById = function (req, res) {
     Warehouse.findById(req.params.IdWarehouse, function (err, warehouse) {
         if (err) {
             res.send(err);
+        } else if (!warehouse || warehouse.length === 0) {
+            res.status(404).send({ message: "Warehouse not found" });
         } else {
-            res.render('warehouse_edit.ejs', { warehouse: warehouse });
+            res.render('warehouse_edit.ejs', { warehouse: warehouse[0] });
         }
     });
 }
